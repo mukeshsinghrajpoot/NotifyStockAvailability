@@ -1,0 +1,140 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Bundle\ViewModel\ValidateQuantity;
+
+// phpcs:disable Generic.Files.LineLength.TooLong
+?>
+<?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio */ ?>
+<?php $_option = $block->getOption(); ?>
+<?php $_selections  = $_option->getSelections(); ?>
+<?php $_default     = $_option->getDefaultSelection(); ?>
+<?php list($_defaultQty, $_canChangeQty) = $block->getDefaultValues(); ?>
+<?php
+/** @var ValidateQuantity $viewModel */
+$viewModel = $block->getData('validateQuantityViewModel');
+$viewModeldata = $block->getData('viewModel');
+$getButtonEnable = $viewModeldata->getButtonEnable();
+$gettile = $viewModeldata->getpdpTitle();
+$getmodelheadertitle = $viewModeldata->getmodelheaderTitle();
+$customerdata=$viewModeldata->getCustomer();
+$fname=$customerdata['fname'];
+$lname=$customerdata['lname'];
+$cemail=$customerdata['email'];
+$product = $block->getProduct();
+$product_url=$product->getProductUrl();
+$producttype=$product->getTypeId();
+?>
+<div class="field option <?= ($_option->getRequired()) ? ' required': '' ?>">
+    <label class="label">
+        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <div class="nested options-list">
+            <?php if ($block->showSingle()): ?>
+                <?= /* @noEscape */ $block->getSelectionTitlePrice($_selections[0])
+                ?>
+                <?= /* @noEscape */ $block->getTierPriceRenderer()->renderTierPrice($_selections[0]) ?>
+                <input type="hidden"
+                       class="bundle-option-<?= (int)$_option->getId() ?>  product bundle option"
+                       name="bundle_option[<?= (int)$_option->getId() ?>]"
+                       value="<?= (int)$_selections[0]->getSelectionId() ?>"
+                       id="bundle-option-<?= (int)$_option->getId() ?>-<?= (int)$_selections[0]->getSelectionId() ?>"
+                       checked="checked"
+                />
+            <?php else: ?>
+                <?php if (!$_option->getRequired()): ?>
+                    <div class="field choice">
+                        <input type="radio"
+                               class="radio product bundle option"
+                               id="bundle-option-<?= $block->escapeHtmlAttr($_option->getId()) ?>"
+                               name="bundle_option[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                               data-selector="bundle_option[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                            <?= ($_default && $_default->isSalable())?'':' checked="checked" ' ?>
+                               value=""/>
+                        <label class="label" for="bundle-option-<?= $block->escapeHtmlAttr($_option->getId()) ?>">
+                            <span><?= $block->escapeHtml(__('None')) ?></span>
+                        </label>
+                    </div>
+                <?php endif; ?>
+                <?php foreach ($_selections as $_selection): ?>
+                    <div class="field choice">
+                        <input type="radio"
+                               class="radio product bundle option change-container-classname"
+                               id="bundle-option-<?= $block->escapeHtmlAttr($_option->getId()) ?>-<?= $block->escapeHtmlAttr($_selection->getSelectionId()) ?>"
+                            <?php if ($_option->getRequired()) {
+                                echo 'data-validate="{\'validate-one-required-by-name\':true}"';
+                            } ?>
+                               name="bundle_option[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                               data-selector="bundle_option[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                            <?php if ($block->isSelected($_selection)) { echo ' checked="checked"'; } ?>
+                            <?php if (!$_selection->isSaleable()) { echo ' disabled="disabled"'; } ?>
+                               value="<?= $block->escapeHtmlAttr($_selection->getSelectionId()) ?>"
+                               data-errors-message-box="#validation-message-box-radio"/>
+                        <label class="label"
+                               for="bundle-option-<?= $block->escapeHtmlAttr($_option->getId()) ?>-<?= $block->escapeHtmlAttr($_selection->getSelectionId()) ?>">
+                            <span><?= /* @noEscape */ $block->getSelectionTitlePrice($_selection) ?></span>
+                            <br/>
+                            <?= /* @noEscape */ $block->getTierPriceRenderer()->renderTierPrice($_selection) ?>
+                        </label>
+                    </div>
+                    <?php
+                    $sku=$_selection->getSku();
+                    $pname=$_selection->getName();
+                    $pid=$_selection->getId();
+                    $isAvailable=$_selection->isAvailable();
+                    ?>
+                    <?php if ($getButtonEnable && $isAvailable=='0'): ?>
+                        <div>
+                        <a href="javascript:void(0);" class="enquiry-product-group pdpbutton bundle"
+                        data-sku='<?= /* @noEscape */ $sku; ?>' data-title="<?= /* @noEscape */ $getmodelheadertitle; ?>" 
+                        id="enquiry-product-group<?= /* @noEscape */ $sku; ?>"><?= /* @noEscape */ $gettile; ?></a>
+                        </div>
+                        <div id="popup-modalgroup<?= /* @noEscape */ $sku; ?>" style="display:none;">
+                        <div id='responcedata<?= /* @noEscape */ $sku; ?>'></div>
+                        <div class="formdata" id='formdata<?= /* @noEscape */ $sku; ?>'>
+                        <input type="hidden" value="<?= /* @noEscape */ $pid; ?>" name='pid' 
+                        id='pid<?= /* @noEscape */ $sku; ?>'>
+                        <input type="hidden" value="<?= /* @noEscape */ $product_url; ?>" name='product_url' 
+                        id='product_url<?= /* @noEscape */ $sku; ?>'>    
+                        <input type="hidden" value="<?= /* @noEscape */ $pname; ?>" name='pname' id='pname<?= /* @noEscape */ $sku; ?>'>
+                        <input type="hidden" value="<?= /* @noEscape */ $sku; ?>" name='sku' 
+                        id='sku<?= /* @noEscape */ $sku; ?>'>
+                        <input type="text" value="<?= /* @noEscape */ $fname; ?>" name='fname' id='fname<?= /* @noEscape */ $sku; ?>' placeholder="First Name">
+                        <input type="text" value="<?= /* @noEscape */ $lname; ?>" name='lname' id='lname<?= /* @noEscape */ $sku; ?>' placeholder="Last Name">
+                        <input type="email" value="<?= /* @noEscape */ $cemail; ?>" name='email' id='email<?= /* @noEscape */ $sku; ?>' placeholder="Email">
+                        <span class='Submit_Enquiry_btn' id="submit_stockenquire<?= /* @noEscape */ $sku; ?>">
+                        <?= /* @noEscape */ $gettile; ?></span>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <div id="bundle-option-<?= $block->escapeHtmlAttr($_option->getId()) ?>-container"></div>
+                <div id="validation-message-box-radio"></div>
+            <?php endif; ?>
+            <div class="field qty qty-holder">
+                <label class="label" for="bundle-option-<?= $block->escapeHtmlAttr($_option->getId()) ?>-qty-input">
+                    <span><?= $block->escapeHtml(__('Quantity')) ?></span>
+                </label>
+                <div class="control">
+                    <input <?php if (!$_canChangeQty) { echo ' disabled="disabled"'; } ?>
+                        id="bundle-option-<?= $block->escapeHtmlAttr($_option->getId()) ?>-qty-input"
+                        class="input-text qty<?php if (!$_canChangeQty) { echo ' qty-disabled'; } ?>"
+                        type="number"
+                        min="0"
+                        data-validate="<?= $block->escapeHtmlAttr($viewModel->getQuantityValidators()) ?>"
+                        name="bundle_option_qty[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                        data-selector="bundle_option_qty[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                        value="<?= $block->escapeHtmlAttr($_defaultQty) ?>"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+{
+ "*":{"Bluethinkinc_NotifyStockAvailability/js/stockgroupenquiry": {}}
+}
+</script>

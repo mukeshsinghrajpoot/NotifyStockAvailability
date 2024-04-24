@@ -1,0 +1,71 @@
+<?php
+$viewModel = $block->getData('viewModel');
+$getButtonEnable = $viewModel->getButtonEnable();
+$getButtontitle = $viewModel->getpdpTitle();
+$getmodelheadertitle = $viewModel->getmodelheaderTitle();
+$customerdata=$viewModel->getCustomer();
+$fname=$customerdata['fname'];
+$lname=$customerdata['lname'];
+$cemail=$customerdata['email'];
+$product = $block->getProduct();
+$pname=$product->getName();
+$sku=$product->getSku();
+$pid=$product->getId();
+$isAvailable = $product->isAvailable();
+$product_url=$product->getProductUrl();
+$producttype=$product->getTypeId();
+if ($getButtonEnable):
+    if ($isAvailable=='0' && ($producttype=='simple' ||
+    $producttype=='downloadable' ||
+    $producttype=='configurable' || $producttype=='grouped'
+    || $producttype=='bundle')) {?>
+<div>
+    <a href="javascript:void(0);"  class="enquiry-product-stock pdpbutton" id="enquiry-product-stock" 
+    data-title="<?= /* @noEscape */ $getmodelheadertitle; ?>">
+        <?= /* @noEscape */ $getButtontitle; ?></a>
+</div>
+<div id="popup-modalpdp" style="display:none;">
+    <div id='responcedata'></div>
+    <div class="formdata" id='formdata'> 
+    <input type="hidden" value="<?= /* @noEscape */ $pid; ?>" name='pid' id='pid'>  
+    <input type="hidden" value="<?= /* @noEscape */ $pname; ?>" name='pname' id='pname'>
+    <input type="hidden" value="<?= /* @noEscape */ $sku; ?>" name='sku' id='sku'>
+    <input type="hidden" value="<?= /* @noEscape */ $product_url; ?>" name='product_url' id='product_url'>
+    <input type="text" value="<?= /* @noEscape */ $fname; ?>" name='fname' id='fname' placeholder="First Name">
+    <input type="text" value="<?= /* @noEscape */ $lname; ?>" name='lname' id='lname' placeholder="Last Name">
+    <input type="email" value="<?= /* @noEscape */ $cemail; ?>" name='email' id='email' placeholder="Email">
+    <span class="Submit_Enquiry_btn" id="submit_stockenquire">
+        <?= /* @noEscape */ $getButtontitle; ?>
+    </span>
+    </div>
+</div>
+<?php } elseif ($producttype=='configurable') { ?>
+<div>
+    <a style="display:none;" href="javascript:void(0);"
+    class="enquiry-product-stock pdpbutton" 
+    id="enquiry-product-stock" data-title="<?= /* @noEscape */
+    $getmodelheadertitle; ?>">
+        <?= /* @noEscape */ $getButtontitle; ?></a>
+</div>
+<div id="popup-modalpdp" style="display:none;">
+    <div id='responcedata'></div>
+    <div class="formdata" id='formdata'> 
+    <input type="hidden" value="" name='pid' id='pid'>  
+    <input type="hidden" value="" name='pname' id='pname'>
+    <input type="hidden" value="" name='sku' id='sku'>
+    <input type="hidden" value="<?= /* @noEscape */ $product_url; ?>" name='product_url' id='product_url'>
+    <input type="text" value="<?= /* @noEscape */ $fname; ?>" name='fname' id='fname' placeholder="First Name">
+    <input type="text" value="<?= /* @noEscape */ $lname; ?>" name='lname' id='lname' placeholder="Last Name">
+    <input type="email" value="<?= /* @noEscape */ $cemail; ?>" name='email' id='email' placeholder="Email">
+    <span class="Submit_Enquiry_btn" id="submit_stockenquire">
+        <?= /* @noEscape */ $getButtontitle; ?>
+    </span>
+    </div>
+</div>    
+<?php }endif; ?>
+<script type="text/x-magento-init">
+{
+ "*":{"Bluethinkinc_NotifyStockAvailability/js/stockenquiry": {}}
+}
+</script>
+

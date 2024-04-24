@@ -1,0 +1,86 @@
+<?php
+/** @var \Bluethinkinc\ProductEnquiry\Block\Product\ListProduct $block */
+$product = $block->getProduct();
+$pname = $product->getName();
+$sku = $product->getSku();
+$pid = $product->getId();
+$isAvailable = $product->isAvailable();
+$product_url=$product->getProductUrl();
+$producttype=$product->getTypeId();
+$getbuttonenable=$block->getbuttonEndable();
+$getmodelheadertitle = $block->getmodelheaderTitle();
+$customerdata=$block->getCustomer();
+$fname=$customerdata['fname'];
+$lname=$customerdata['lname'];
+$cemail=$customerdata['email'];
+$gettile=$block->getplpTitle();
+if ($getbuttonenable):
+    if ($isAvailable=='0' && ($producttype=='simple' ||
+        $producttype=='downloadable' ||
+        $producttype=='configurable' ||
+        $producttype=='bundle' ||
+        $producttype=='grouped')) {
+        ?>
+<div>
+    <a href="javascript:void(0);" class="enquiry-product-stock"
+    data-sku='<?= /* @noEscape */ $sku; ?>' data-title="<?= /* @noEscape */ $getmodelheadertitle; ?>" 
+    id="enquiry-product-stock<?= /* @noEscape */ $sku; ?>"><?= /* @noEscape */ $gettile; ?></a>
+</div>
+<div id="popup-modalplp<?= /* @noEscape */ $sku; ?>" style="display:none;">
+    <div id='responcedata<?= /* @noEscape */ $sku; ?>'></div>
+    <div class="formdata" id='formdata<?= /* @noEscape */ $sku; ?>'>
+    <input type="hidden" value="<?= /* @noEscape */ $pid; ?>" name='pid' 
+    id='pid<?= /* @noEscape */ $sku; ?>'>
+    <input type="hidden" value="<?= /* @noEscape */ $product_url; ?>" name='product_url' 
+    id='product_url<?= /* @noEscape */ $sku; ?>'>    
+    <input type="hidden" value="<?= /* @noEscape */ $pname; ?>" name='pname' id='pname<?= /* @noEscape */ $sku; ?>'>
+    <input type="hidden" value="<?= /* @noEscape */ $sku; ?>" name='sku' 
+    id='sku<?= /* @noEscape */ $sku; ?>'>
+    <input type="text" value="<?= /* @noEscape */ $fname; ?>" 
+    name='fname' id='fname<?= /* @noEscape */ $sku; ?>' 
+    placeholder="First Name">
+    <input type="text" value="<?= /* @noEscape */ $lname; ?>" 
+    name='lname' id='lname<?= /* @noEscape */ $sku; ?>' 
+    placeholder="Last Name">
+    <input type="email" value="<?= /* @noEscape */ $cemail; ?>" 
+    name='email' id='email<?= /* @noEscape */ $sku; ?>' placeholder="Email">
+    <span class='Submit_Enquiry_btn' id="submit_stockenquire<?= /* @noEscape */
+     $sku; ?>">
+        <?= /* @noEscape */ $gettile; ?></span>
+    </div>
+</div>
+    <?php } elseif ($producttype=='configurable') { ?>
+    <div>
+    <a style="display:none;" href="javascript:void(0);" class="enquiry-product-stock"
+    data-sku='<?= /* @noEscape */ $sku; ?>' data-title="<?= /* @noEscape */ $getmodelheadertitle; ?>" 
+    id="enquiry-product-stock<?= /* @noEscape */ $sku; ?>"><?= /* @noEscape */ $gettile; ?></a>
+</div>
+<div id="popup-modalplp<?= /* @noEscape */ $sku; ?>" style="display:none;">
+    <div id='responcedata<?= /* @noEscape */ $sku; ?>'></div>
+    <div class="formdata" id='formdata<?= /* @noEscape */ $sku; ?>'>
+    <input type="hidden" value="<?= /* @noEscape */ $pid; ?>"
+     name='pid' id='pid<?= /* @noEscape */ $sku; ?>'>
+    <input type="hidden" value="<?= /* @noEscape */ $product_url; ?>" name='product_url' 
+    id='product_url<?= /* @noEscape */ $sku; ?>'>    
+    <input type="hidden" value="<?= /* @noEscape */ $pname; ?>" name='pname' id='pname<?= /* @noEscape */ $sku; ?>'>
+    <input type="hidden" value="<?= /* @noEscape */ $sku; ?>" name='sku' 
+    id='sku<?= /* @noEscape */ $sku; ?>'>
+    <input type="text" value="<?= /* @noEscape */ $fname; ?>"
+     name='fname' id='fname<?= /* @noEscape */ $sku; ?>'
+      placeholder="First Name">
+    <input type="text" value="<?= /* @noEscape */ $lname; ?>"
+     name='lname' id='lname<?= /* @noEscape */ $sku; ?>'
+      placeholder="Last Name">
+    <input type="email" value="<?= /* @noEscape */ $cemail; ?>"
+     name='email' id='email<?= /* @noEscape */ $sku; ?>'
+      placeholder="Email">
+    <span class='Submit_Enquiry_btn' id="submit_stockenquire<?= /* @noEscape */ $sku; ?>">
+        <?= /* @noEscape */ $gettile; ?></span>
+    </div>
+</div>
+    <?php }endif; ?>
+<script type="text/x-magento-init">
+{
+ "*":{"Bluethinkinc_NotifyStockAvailability/js/stocklistenquiry": {}}
+}
+</script>

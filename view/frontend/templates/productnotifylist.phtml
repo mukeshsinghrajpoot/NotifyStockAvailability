@@ -1,0 +1,48 @@
+<?php if ($block->getPagerHtml()): ?>
+  <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml(); ?></div>
+<?php endif ?>
+<?php $gridrecords = $block->getCustomCollection(); ?>
+<?php if ($gridrecords && count($gridrecords)): ?>
+  <div class="table-wrapper orders-history">
+    <table class="data table table-order-items history" id="my-orders-table">
+      <caption class="table-caption"><?= /* @noEscape */ __('Grid Record') ?></caption>
+      <thead>
+      <tr>
+        <th scope="col" class="col id"><?= /* @noEscape */ __('ID') ?></th>
+        <th scope="col" class="col product"><?= /* @noEscape */ __('Product Name') ?></th>
+        <th scope="col" class="col amount"><?= /* @noEscape */ __('product sku') ?></th>
+        <th scope="col" class="col amount"><?= /* @noEscape */ __('Status') ?></th>
+        <th scope="col" class="col amount"><?= /* @noEscape */ __('Action') ?></th>
+      </tr>
+      </thead>
+      <tbody>
+      <?php
+        foreach ($gridrecords as $gridrecord): ?>
+        <tr>
+          <td data-th="<?= /* @noEscape */ $block->escapeHtml(__('ID')) ?>" class="col id">
+              <?= /* @noEscape */ $gridrecord['notifystock_id']; ?>
+          </td>
+          <td data-th="<?= /* @noEscape */ $block->escapeHtml(__('Product Name')) ?>" class="col product">
+            <?= /* @noEscape */ $gridrecord['product_name']; ?>
+          </td>
+          <td data-th="<?= /* @noEscape */ $block->escapeHtml(__('product sku')) ?>"
+            class="col sku"><?= /* @noEscape */ $gridrecord['product_sku']; ?></td>
+        <td data-th="<?= /* @noEscape */ $block->escapeHtml(__('status')) ?>"
+            class="col status <?php if ($gridrecord['status']=='Notify') {echo 'successstatus';
+                              } else {echo 'errorstatus';} ?>">
+            <?php if ($gridrecord['status']=='Notify') {echo 'Available';
+            } else {echo 'Out of stock';} ?></td>
+        <td><a href="<?= /* @noEscape */ $gridrecord['product_url']; ?>">
+            <?= /* @noEscape */ $block->escapeHtml(__('View Product')) ?>
+        </a></td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+    <?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?= /* @noEscape */ $block->getPagerHtml(); ?></div>
+    <?php endif ?>
+<?php else: ?>
+  <div class="message info empty"><span><?= /* @noEscape */ __('No any record.'); ?></span></div>
+<?php endif ?>

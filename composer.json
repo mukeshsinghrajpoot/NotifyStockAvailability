@@ -1,0 +1,23 @@
+{
+    "name": "bluethinkinc/magento2-module-notifystockavailability",
+    "description": "this extention for notify stock availability",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Bluethinkinc",
+            "email": "pramod@bluethinkinc.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Bluethinkinc\\NotifyStockAvailability\\": ""
+        }
+    }
+}

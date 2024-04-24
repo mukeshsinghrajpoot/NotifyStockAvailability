@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Bluethinkinc\NotifyStockAvailability\Api\NotifystockRepositoryInterface" type="Bluethinkinc\NotifyStockAvailability\Model\NotifystockRepository"/>
+	<preference for="Bluethinkinc\NotifyStockAvailability\Api\Data\NotifystockInterface" type="Bluethinkinc\NotifyStockAvailability\Model\Notifystock"/>
+	<preference for="Bluethinkinc\NotifyStockAvailability\Api\Data\NotifystockSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Bluethinkinc\NotifyStockAvailability\Model\ResourceModel\Notifystock\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">bluethinkinc_notifystockavailability_notifystock</argument>
+			<argument name="resourceModel" xsi:type="string">Bluethinkinc\NotifyStockAvailability\Model\ResourceModel\Notifystock\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="bluethinkinc_notifystockavailability_notifystock_listing_data_source" xsi:type="string">Bluethinkinc\NotifyStockAvailability\Model\ResourceModel\Notifystock\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<type name="Magento\Framework\Console\CommandList">
+       <arguments>
+           <argument name="commands" xsi:type="array">
+               <item name="notify_commnad" xsi:type="object">Bluethinkinc\NotifyStockAvailability\Console\Notifycommnad</item>
+           </argument>
+       </arguments>
+   </type>
+</config>

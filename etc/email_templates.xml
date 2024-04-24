@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="product_stock_email_configuration_email_template_stock" label="Send Notify prodcut" file="send_product_stock_email.html" type="html" module="Bluethinkinc_NotifyStockAvailability" area="frontend"/>
+    <template id="product_stock_email_configuration_email_template_notify" label="Send Notify prodcut in stock" file="send_product_notify_email.html" type="html" module="Bluethinkinc_NotifyStockAvailability" area="frontend"/>
+</config>

@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bluethink" translate="label" sortOrder="10">
+            <label>BlueThink Inc</label>
+        </tab>
+        <section id="product_stock" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Product Notify</label>
+            <tab>bluethink</tab>
+            <resource>Bluethinkinc_NotifyStockAvailability::bluethink_notify_stock_availability</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select "yes" to enable module.</comment>
+                </field>
+            </group>
+            <group id="cronconfiguration" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Notify Cron Configuration</label>
+                <field id="frequency" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Frequency</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Bluethinkinc\NotifyStockAvailability\Model\Config\CronConfig</backend_model>
+                </field>
+                <field id="time" translate="label comment" sortOrder="2" type="time" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Time</label>
+                </field>
+            </group>
+            <group id="options" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Button options</label>
+                <field id="button_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select "yes" to enable module.</comment>
+                </field>
+                <field id="product_page_button_title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Product Page Button Text </label>
+                    <comment>Enter Your button text</comment>
+                    <depends>
+                        <field id="product_stock/options/button_enable">1</field>
+                    </depends>
+                </field>
+                <field id="catagory_page_button_title" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Catagory Page Button Text </label>
+                    <comment>Enter Your button text</comment>
+                    <depends>
+                        <field id="product_stock/options/button_enable">1</field>
+                    </depends>
+                </field>
+                <field id="modelmessage" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Sussess Message </label>
+                    <comment>Enter Your Success massage.after save data show message in popup model.</comment>
+                    <depends>
+                        <field id="product_stock/options/button_enable">1</field>
+                    </depends>
+                </field>
+                <field id="pagereloadtime" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Pop up Model Close Time</label>
+                    <comment>Enter Your Popup model close time.</comment>
+                    <depends>
+                        <field id="product_stock/options/button_enable">1</field>
+                    </depends>
+                </field>
+                <field id="popupmodelheadertitle" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Pop-up Model Header Title</label>
+                    <comment>Enter Your Popup model Header Title.</comment>
+                    <depends>
+                        <field id="product_stock/options/button_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+             <group id="email_configuration" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Send Email To User Configuration</label>
+                <field id="email_template_stock" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select Customer Register User Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="email_template_notify" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select Customer Notify User Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                 <field id="notify_email_subject" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Email Subject Register User</label>
+                    <comment>Enter Email Subject.</comment>
+                </field>
+                <field id="notify_email_subject_notify" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Email Subject Notify User</label>
+                    <comment>Enter Email Subject.</comment>
+                </field>
+                <field id="sender" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

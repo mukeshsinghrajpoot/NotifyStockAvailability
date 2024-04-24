@@ -1,0 +1,141 @@
+.error {color: red;font-size: medium;}
+span.error {color: red;font-size: medium;}
+span.success {color: green;font-size: 4rem;font-weight: 700;text-align: center;width: 100%;
+display: block;padding-bottom: 40px;padding-top: 20px;}
+.custom_popup_box .modal-inner-wrap {
+    max-width: 500px;
+    border-radius: 8px;
+}
+.custom_popup_box h1.modal-title {
+    font-weight: 600;
+    text-align: center;
+}
+.custom_popup_box .modal-content input {
+    padding: 10px ;
+    height: 50px ;
+    border: 2px solid #ccc ;
+    border-radius: 4px;
+}
+span#submit_enquire {
+    font-size: 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    float: right;
+}
+.custom_popup_box textarea {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+aside.modal-popup.custom_popup_box.modal-slide._inner-scroll._show {
+    top: 0%;
+}
+div#modal-content-9 {
+    padding: 40px;
+}
+div#responcedata span.success {
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    width: 100% ;
+    display: block;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+.formdata {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+}
+span.Submit_Enquiry_btn {
+    background: #1979c3;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 30%;
+    margin: 10px auto;
+}
+a.enquiry-product-stock {
+    background: #1979c3;
+    color: #fff;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 1.5rem;
+    display: block;
+    border-radius: 0;
+    line-height: 1;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    white-space: nowrap;
+}
+a.enquiry-product-stock:hover{
+    text-decoration: none;
+}
+a.enquiry-product-stock.pdpbutton {
+    background: #1979c3;
+    border: 1px solid #1979c3;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 2.2rem;
+    padding: 14px 17px;
+    font-size: 1.8rem;
+    border-radius: 3px;
+    font-weight: 600;
+    width: 20%;
+}
+.product.actions.product-item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+}
+
+a.enquiry-product-group {
+    background: #1979c3;
+    color: #fff;
+    padding: 10px;
+    font-weight: 400;
+    font-size: 1.5rem;
+    display: block;
+    border-radius: 0;
+    line-height: 1;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    white-space: nowrap;
+}
+a.enquiry-product-group:hover{
+    text-decoration: none;
+}
+a.enquiry-product-group.pdpbutton {
+    background: #1979c3;
+    border: 1px solid #1979c3;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 2.2rem;
+    padding: 14px 17px;
+    font-size: 1.8rem;
+    border-radius: 3px;
+    font-weight: 600;
+}
+a.enquiry-product-group.bundle {
+    padding: 6px 17px;
+}
+td.col.status.successstatus {
+    color: #fff;
+    background: green;
+    text-align: center;
+}
+td.col.status.errorstatus {
+    color: #fff;
+    background: red;
+    text-align: center;
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <product_stock>
+            <options>
+                <product_page_button_title>Notify me</product_page_button_title>
+                <catagory_page_button_title>Notify me</catagory_page_button_title>
+                <modelmessage>Thank you We will notify you when the product will be in stock.</modelmessage>
+                <pagereloadtime>500</pagereloadtime>
+                <popupmodelheadertitle>Register For Notify.</popupmodelheadertitle>
+            </options>
+            <email_configuration>
+                <email_template_stock>product_stock_email_configuration_email_template_stock</email_template_stock>
+                <email_template_notify>product_stock_email_configuration_email_template_notify</email_template_notify>
+                <notify_email_subject>Register for product.</notify_email_subject>
+                <notify_email_subject_notify>Notify for product.</notify_email_subject_notify>
+                <sender>general</sender>
+            </email_configuration>
+        </product_stock>
+    </default>
+</config>

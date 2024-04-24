@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.grouped">
+            <action method="setTemplate" ifconfig="product_stock/general/enable">
+                <argument name="template" xsi:type="string">Bluethinkinc_NotifyStockAvailability::product/view/type/grouped.phtml</argument>
+            </action>
+            <arguments>
+               <argument name="viewModel" xsi:type="object">Bluethinkinc\NotifyStockAvailability\viewModel\StockAvailabilityview</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
